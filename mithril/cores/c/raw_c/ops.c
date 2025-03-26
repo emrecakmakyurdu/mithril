@@ -52,20 +52,29 @@ void scalar_add(Array *output, Array *input, float scalar)
 
 void scalar_multiply(Array *output, Array *input, float scalar) 
 {
+    //printf("SCALAR MULTIPLY \n");
+    //printf("%f %f \n", input->data[0], input->data[1]);
+    //printf("%f\n", scalar);
     for (int i = 0; i < input->size; i++) {
         output->data[i] = input->data[i] * scalar;
     }
+    //printf("%f %f \n", output->data[0], output->data[1]);
 }
 
 void subtract(Array *output, Array *left, Array *right)
 {
     Array * temp = create_empty_struct(right->ndim, right->shape);
     scalar_multiply(temp, right, -1.0);
+    //printf("SUBTRACT TEMP %f, %f\n", temp->data[0], temp->data[1] );
+    //printf("SUBTRACT LEFT %f, %f\n", left->data[0], left->data[1] );
     add(output, left, temp);
+    //printf("SUBTRACT OUT  %f, %f\n", output->data[0], output->data[1] );
 }
 
 void scalar_subtract(Array *output, Array *input, float scalar)
 {
+    //printf("SUBTRACT INPUT %f, %f\n", input->data[0], input->data[1] );
+    //printf("SUBTRACT SCALAR %f\n", scalar );
     for (int i = 0; i < input->size; i++) {
         output->data[i] = input->data[i] - scalar;
     }
